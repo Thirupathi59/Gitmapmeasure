@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Dimensions, Alert, StyleSheet, FlatList, Text, TouchableOpacity, BackHandler } from 'react-native';
+import { View, Dimensions, Alert, StyleSheet, FlatList, Text, TouchableOpacity, BackHandler, Image } from 'react-native';
 import MapView, { Polyline, PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { getAreaOfPolygon } from 'geolib';
 import Geolocation from 'react-native-geolocation-service';
@@ -169,20 +169,36 @@ const Mapview = () => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={handleShowCurrentLocation}>
           <Text style={styles.buttonText}>Current Location</Text>
+          <Image
+          style={styles.icons}
+          source={require('../assets/location.png')}
+          />
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button} onPress={handleCalculateArea}>
           <Text style={styles.buttonText}>Calculate Area</Text>
+          <Image
+          style={styles.icons}
+          source={require('../assets/area.png')}
+          />
         </TouchableOpacity>
       </View>
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button1} onPress={handleClear}>
           <Text style={styles.buttonText}>Clear</Text>
+          <Image
+          style={styles.icons}
+          source={require('../assets/delet.png')}
+          />
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button} onPress={handleViewPolygons}>
-          <Text style={styles.buttonText}>View Saved Polygons</Text>
+          <Text style={styles.buttonText}>Saved Polygons</Text>
+          <Image
+          style={styles.icons}
+          source={require('../assets/saved.png')}
+          />
         </TouchableOpacity>
       </View>
     </View>
@@ -204,19 +220,22 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   button: {
+    flexDirection:'row',
     height: 50,
     width: '45%',
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     // backgroundColor: 'brown',
+    justifyContent: 'space-around',
     backgroundColor: '#4081EC',
     borderRadius: 5,
   },
   button1: {
+    flexDirection:'row',
     height: 50,
     width: '45%',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     backgroundColor: 'brown',
     // backgroundColor: '#4081EC',
     borderRadius: 5,
@@ -226,6 +245,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  icons:{
+    height:25,
+     width:25, 
+    resizeMode:'cover', 
+  },
+
+
 });
 
 export default Mapview;
